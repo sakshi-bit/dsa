@@ -1,37 +1,21 @@
-/*Find the largest rectangular area possible in a given histogram where 
-the largest rectangle can be made of a number of contiguous bars. 
-For simplicity, assume that all bars have same width and the width is 1 unit. 
-For example, consider the following histogram with 7 bars of heights 
-{6, 2, 5, 4, 5, 1, 6}. The largest possible rectangle possible is 12 
-(see the below figure, the max area rectangle is highlighted in red)
-https://www.geeksforgeeks.org/largest-rectangle-under-histogram/
- */
+/*  Given a binary matrix, find the maximum size rectangle binary-sub-matrix with all 1’s.
+Example:
 
+Input :  0 1 1 0
+        1 1 1 1
+        1 1 1 1
+        1 1 0 0
 
-
-
-
-/*Find the largest rectangular area possible in a given histogram where 
-the largest rectangle can be made of a number of contiguous bars. 
-For simplicity, assume that all bars have same width and the width is 1 unit. 
-For example, consider the following histogram with 7 bars of heights 
-{6, 2, 5, 4, 5, 1, 6}. The largest possible rectangle possible is 12 
-(see the below figure, the max area rectangle is highlighted in red)
-https://www.geeksforgeeks.org/largest-rectangle-under-histogram/
- */
-
-
+Output :  1 1 1 1
+          1 1 1 1 .  */
 
 
 
 #include<iostream>
 #include<bits/stdc++.h>
 using namespace std;
-
-
-
-int maxArea(vector<int> heights,int n){
-    vector<int>left;
+int mah(vector<int>heights,int n){
+vector<int>left;
     vector<int>right;
     stack<pair<int,int>>s;
     
@@ -66,7 +50,7 @@ int maxArea(vector<int> heights,int n){
 
     stack<pair<int,int>>st;
 
-  
+
 
     //nsr
     for(int i=n-1;i>=0;i--){
@@ -133,21 +117,48 @@ int maxArea(vector<int> heights,int n){
 
 
 
-
 int main(){
-    int n;
-    cout<<"enter the height array size "<<endl;
-    cin>>n;
-    vector<int> heights;
+    int n,m;
+    cout<<"enter the no. of rows and colummns: ";
+    cin>>n>>m;
+    int arr[n][m];
     cout<<endl;
-    cout<<"enter the elemnts og the height array "<<endl;
-    int a;
+    cout<<"enter the elements of the array: ";
     for(int i=0;i<n;i++){
-        cin>>a;
-        heights.push_back(a);
+        for(int j=0;j<m;j++){
+            cin>>arr[i][j];
+        }
     }
-    cout<<endl;
-    int maximumAreaOfTheHistogram = maxArea(heights,n);
-    cout<<maximumAreaOfTheHistogram<<endl;
-    return 0;
+
+    vector<int>v;
+    //copied first row 
+    for(int j=0;j<m;j++){
+        v.push_back(arr[0][j]);
+    }
+
+    //first histogram maximum
+    int num = v.size();
+    int mx = mah(v,num);
+    for(int i=1;i<n;i++){
+        for(int j=0;j<m;j++){
+            if(arr[i][j]==0){
+                v[j]=0;
+            }else{
+                v[j] = v[j]+arr[i][j];
+            }
+        }
+    mx = max(mx,mah(v,n));
+    
+    }
+
+    cout<<"The maximum area of the binary histogram is "<<mx<<endl;
+
+return 0;
+
+    
+
+
+    
+
+
 }
