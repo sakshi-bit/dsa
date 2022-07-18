@@ -39,7 +39,7 @@ class MinStack {
         }
         else if(s.top()<minElem){
             minElem = 2*minElem-s.top();
-            s.pop();
+            s.pop(); 
         }
     }
 
