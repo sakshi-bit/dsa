@@ -93,6 +93,23 @@ void print(Node* &tail){
     cout<<endl;
 }
 
+bool isCircular(Node* &head){
+    if(head==NULL){
+            return true;
+    }
+
+    Node* temp = head;
+    while(temp!=NULL && temp!=head){
+        temp = temp->next;
+    }
+    if(temp==NULL){
+        return false;
+    }
+
+    return true;
+
+}
+
 int main(){
     Node* tail = NULL;
     insertNode(tail,5,3);
@@ -118,6 +135,12 @@ int main(){
 
     deleteNode(tail,6);
     print(tail);
+
+    if(isCircular(tail)){
+        cout<<"yes"<<endl;
+    }else{
+        cout<<"no"<<endl;
+    }
 
     return 0;
 

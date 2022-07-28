@@ -98,6 +98,7 @@ void insertAtAnyPosition(Node* &tail, Node* &head, int position, int d){
 }
 
 void deleteNode(Node* &head,Node* &tail,int position){
+
     if(position==1){
         Node* temp = head;
         temp->next->prev = NULL;
@@ -136,6 +137,22 @@ int getLength(Node* &head){
     return len;
 }
 
+Node* reverseDll(Node* &head,Node* &tail){
+    Node* curr = head;
+    Node* nextNode = NULL;
+    while(curr!=NULL){
+        nextNode= curr->next;
+        curr->next = curr->prev;
+        curr->prev = nextNode;
+        curr= nextNode;
+    }
+
+    curr=head;
+    head = tail;
+    tail = curr;
+    return head;
+}
+
 
 
 int main(){
@@ -148,50 +165,57 @@ int main(){
     //cout << getLength(head) << endl;
 
     insertAtBegining(tail,head, 11);
-    print(head);
-    cout << "head  " << head -> data << endl;
-    cout << "tail  " << tail -> data << endl;
+    // print(head);
+    // cout << "head  " << head -> data << endl;
+    // cout << "tail  " << tail -> data << endl;
 
     insertAtBegining(tail,head, 13);
-    print(head);
-    cout << "head  " << head -> data << endl;
-    cout << "tail  " << tail -> data << endl;
+    // print(head);
+    // cout << "head  " << head -> data << endl;
+    // cout << "tail  " << tail -> data << endl;
 
     insertAtBegining(tail,head, 8);
-    print(head);
-    cout << "head  " << head -> data << endl;
-    cout << "tail  " << tail -> data << endl;
+    // print(head);
+    // cout << "head  " << head -> data << endl;
+    // cout << "tail  " << tail -> data << endl;
 
     insertAtTail(tail,head, 25);
-    print(head);
-    cout << "head  " << head -> data << endl;
-    cout << "tail  " << tail -> data << endl;
+    // print(head);
+    // cout << "head  " << head -> data << endl;
+    // cout << "tail  " << tail -> data << endl;
 
     insertAtAnyPosition(tail, head, 2, 100);
-    print(head);
-    cout << "head  " << head -> data << endl;
-    cout << "tail  " << tail -> data << endl;
+    // print(head);
+    // cout << "head  " << head -> data << endl;
+    // cout << "tail  " << tail -> data << endl;
 
     insertAtAnyPosition(tail, head, 1, 101);
-    print(head);
+//     print(head);
 
+//     cout << "head  " << head -> data << endl;
+//     cout << "tail  " << tail -> data << endl;
+//     cout<<endl;
+//    cout<<"length"<<endl;
+
+    // cout<<getLength(head);
+    // insertAtAnyPosition(tail, head, 6, 102);
+    print(head);
+    // cout << "head  " << head -> data << endl;
+    // cout << "tail  " << tail -> data << endl;
+    //  cout<<"length"<<endl;
+    //  cout<<getLength(head);
+    //  deleteNode(head,tail,4);
+    //  print(head);
+    //  cout << "head  " << head -> data << endl;
+    // cout << "tail  " << tail -> data << endl;
+    //  cout<<"length"<<endl;
+
+
+    reverseDll(head,tail);
+    print(head);
     cout << "head  " << head -> data << endl;
     cout << "tail  " << tail -> data << endl;
-    cout<<endl;
-   cout<<"length"<<endl;
 
-    cout<<getLength(head);
-    insertAtAnyPosition(tail, head, 6, 102);
-    print(head);
-    cout << "head  " << head -> data << endl;
-    cout << "tail  " << tail -> data << endl;
-     cout<<"length"<<endl;
-     cout<<getLength(head);
-     deleteNode(head,tail,4);
-     print(head);
-     cout << "head  " << head -> data << endl;
-    cout << "tail  " << tail -> data << endl;
-     cout<<"length"<<endl;
     return 0;
 
 }

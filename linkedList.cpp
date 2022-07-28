@@ -79,7 +79,7 @@ void deleteNode(Node* &head,Node* &tail, int position){
     int cnt = 1;
     if(position==1){
         Node *temp = head;
-        head = head->nextNode;
+        head = temp->nextNode;
         //memory free start node
         temp->nextNode = NULL;
         delete temp;
@@ -121,6 +121,25 @@ void print(Node* &head){
     cout<<endl;
 }
 
+
+bool isCircular(Node* &head){
+    if(head==NULL){
+            return true;
+    }
+
+    Node* temp = head;
+    while(temp!=NULL && temp!=head){
+        temp = temp->nextNode;
+    }
+    if(temp==NULL){
+        return false;
+    }
+
+    return true;
+
+}
+
+
 int main(){
 
     Node *node1 = new Node(10);
@@ -145,7 +164,14 @@ int main(){
     print(head);
 
     cout<<"head"<<" "<<head->data<<endl;
-    cout<<"tail"<<" "<<tail->data<<endl; 
+    cout<<"tail"<<" "<<tail->data<<endl;
+
+    
+    if(isCircular(head)){
+        cout<<"yes"<<endl;
+    }else{
+        cout<<"no"<<endl;
+    }
 
     return 0;
 }
